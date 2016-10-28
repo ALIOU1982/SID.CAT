@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: sid.cat
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: tabarry
+Implementation-Vendor-Id: MyCatalogue
+Build-Jdk: 1.8.0_102
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: MyCatalogue.sid.cat.App
+
