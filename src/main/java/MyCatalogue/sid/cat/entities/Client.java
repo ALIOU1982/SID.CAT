@@ -76,13 +76,10 @@ public class Client implements Serializable {
 		this.produit = produit;
 	}
 
-	public Client(Long id, String nom, String prenom, String adrresse, Set<Produit> produit) {
-		super();
-		this.id = id;
+	public Client(String nom, String prenom, String adrresse) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adrresse = adrresse;
-		this.produit = produit;
 	}
 
 	public Client() {

@@ -7,4 +7,6 @@ import MyCatalogue.sid.cat.entities.Client;
 
 public interface IClientRepository extends JpaRepository<Client, Long> {
 	
+	public Client findByPrenom(String prenom);
+	
 }
