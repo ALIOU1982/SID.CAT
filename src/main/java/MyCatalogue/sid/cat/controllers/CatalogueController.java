@@ -37,6 +37,11 @@ public class CatalogueController {
 		return produitRepository.listProduitparClient(Id);
 	}
 	
+	@RequestMapping("/ProduitParPrix")
+	List<Produit> ProduitParPrix( @RequestParam("pmin") Double PrixMin, @RequestParam("pmax") Double PrixMax ){
+		return produitRepository.listProduitparPrix(PrixMin, PrixMax);
+	}
+	
 	@RequestMapping("/all")
 	public List<Produit> getAllProduits(){
 		return produitRepository.findAll();

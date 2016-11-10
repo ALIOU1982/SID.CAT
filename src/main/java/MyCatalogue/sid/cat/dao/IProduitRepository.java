@@ -18,6 +18,9 @@ public interface IProduitRepository extends JpaRepository<Produit,Long>{
 	@Query("select p from Produit p where p.client.id = :cli")
 	public List<Produit> listProduitparClient(@Param("cli")Long Id);
 	
+	@Query("select p from Produit p where p.prix >= :pmi and p.prix <= :pma")
+	public List<Produit> listProduitparPrix(@Param("pmi")Double PrixMin, @Param("pma")Double PrixMax);
+	
 	public Page<Produit> findByDesignation(String des, Pageable p);	
 	
 	@Query("select p from Produit p where p.designation like :x")
