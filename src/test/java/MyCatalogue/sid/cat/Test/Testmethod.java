@@ -77,7 +77,13 @@ public class Testmethod  {
 	@Test
 	public void testProduitParMC(){
 		Page<Produit> prodp = produitRepository.produitParMC("A", new PageRequest(0, 5));
-		assertTrue(prodp.hasNext());
+		assertTrue(!prodp.hasNext());
+	}
+	
+	@Test
+	public void testProduitParClient(){
+		List<Produit> prodp = produitRepository.listProduitparClient(1L);
+		assertTrue(!prodp.isEmpty());
 	}
 
 }

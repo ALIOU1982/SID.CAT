@@ -85,22 +85,32 @@
 		</ul>
 	</div>
 
-	<div class="container spacer">
-		<label>Ajouter un produit</label> <br/> <label> Designation</label> <input
-			type="text" ng-model="designe"> <label> Donner le
-			prix </label> <input type="number" ng-model="prixp"> <select "listeClients()" ng-model="idclient">
-			<option ng-repeat="c in clients" value = "{{c.id}}" >{{c.prenom}}</option>
-		</select>
-		<button ng-click="enregistrer()">Enregistrer</button>
-	</div>
-	
-	<div class="container spacer">
-		<label>Ajouter un Client</label> <br/> <label> Nom</label> <input
-			type="text" ng-model="nomclient"> 
-			<label> Prenom</label> <input
-			type="text" ng-model="prenomclient"><label> Donner son adresse </label> <input
-			type="text" ng-model="adresseclient">
-		<button ng-click="enregistrerClient()">Ajouter Client</button>
-	</div>
+	<form name="myForm">
+		<div class="container spacer">
+			<label>Ajouter un produit</label> <br /> <label> Designation</label>
+			<input type="text" ng-model="designe" required> <label>
+				Donner le prix </label> <input type="number" ng-model="prixp" min="0"
+				required>
+			<div role="alert">
+				<span class="error" ng-show="myForm.input.$error.required">
+					Required!</span> <span class="error" ng-show="myForm.input.$error.number">
+					Not valid number!</span>
+			</div>
+
+			<select "listeClients()" ng-model="idclient" required>
+				<option ng-repeat="c in clients" value="{{c.id}}">{{c.prenom}}</option>
+			</select>
+			<button  type="submit" ng-click="enregistrer()"  ng-disabled = "myForm.$invalid" >Enregistrer</button>
+		</div>
+	</form>
+	<form>
+		<div class="container spacer">
+			<label>Ajouter un Client</label> <br /> <label> Nom</label> <input
+				type="text" ng-model="nomclient"> <label> Prenom</label> <input
+				type="text" ng-model="prenomclient"><label> Donner
+				son adresse </label> <input type="text" ng-model="adresseclient">
+			<button ng-click="enregistrerClient()">Ajouter Client</button>
+		</div>
+	</form>
 </body>
 </html>

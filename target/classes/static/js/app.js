@@ -28,6 +28,7 @@ app.controller("CatController", function($scope, $http){
 		$http.get("/save?designation="+$scope.designe+"&Prix="+$scope.prixp+"&client="+$scope.idclient)
 		.success(function(data){
 			$scope.prod=data;
+			$scope.myForm.submitted=true;
 		});
 	};
 	
