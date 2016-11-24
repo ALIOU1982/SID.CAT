@@ -2,75 +2,82 @@ package MyCatalogue.sid.cat.controllers;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import MyCatalogue.sid.cat.dao.IProduitRepository;
 import MyCatalogue.sid.cat.entities.Produit;
+import MyCatalogue.sid.cat.services.ProduitService;
 
 
 @RestController
 @org.springframework.transaction.annotation.Transactional
+
 public class CatalogueController {
 	
-	@Autowired
-	private IProduitRepository produitRepository;
+	@Resource
+	private ProduitService produitService;
 	
 		@RequestMapping("/test")
 	public String test(){
-		return "Test";
+		return this.produitService.test();
 	}
 	
 	@RequestMapping("/save")
 	public Produit saveProduit(Produit p){
-		return produitRepository.save(p);
+		return this.produitService.saveProduit(p);
 	}
 	
 	@RequestMapping("/ProduitParClient")
 	List<Produit> ProduitParClient( @RequestParam("id") Long Id){
-		return produitRepository.listProduitparClient(Id);
+		return this.produitService.ProduitParClient(Id);
 	}
 	
 	@RequestMapping("/ProduitParPrix")
 	List<Produit> ProduitParPrix( @RequestParam("pmin") Double PrixMin, @RequestParam("pmax") Double PrixMax ){
-		return produitRepository.listProduitparPrix(PrixMin, PrixMax);
+		return this.produitService.ProduitParPrix(PrixMin, PrixMax);
 	}
 	
 	@RequestMapping("/all")
 	public List<Produit> getAllProduits(){
-		return produitRepository.findAll();
+		return produitService.getAllProduits();
 	}
 	
 	@RequestMapping("/produits")
 	public Page<Produit> getAllProduits(int page){
-		return produitRepository.findAll(new PageRequest(page, 5));
+		return this.produitService.getAllProduits(page);
 	}
 	
 	@RequestMapping("/produitsParMC")
-	public Page<Produit> getAllProduits(String mc, int page){
-		return produitRepository.produitParMC("%"+mc+"%", new PageRequest(page, 5));
+	public Page<Produit> getAllProduitsMC(String mc, int page){
+		return this.produitService.getAllProduitsMC(mc, page);
 	}
 	
 	@RequestMapping("/get")
 	public Produit getProduit(Long id){
-		return produitRepository.findOne(id);
+		return this.produitService.getProduit(id);
 	}
 	
 	@RequestMapping("/delete")
 	public boolean deleteProduit(Long id){
-		produitRepository.delete(id);
+		this.produitService.deleteProduit(id);
 		return true;
 	}
 	
 	@RequestMapping("/update")
-	public Produit getProduit(Produit p){
-		return produitRepository.saveAndFlush(p);
+	public Produit updatetProduit(Produit p){
+		return this.produitService.updateProduit(p);
 	}
 
+	public ProduitService getProduitService() {
+		return produitService;
+	}
+
+	public void setProduitService(ProduitService produitService) {
+		this.produitService = produitService;
+	}
 }

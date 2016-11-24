@@ -3,41 +3,48 @@ package MyCatalogue.sid.cat.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import MyCatalogue.sid.cat.dao.IClientRepository;
 import MyCatalogue.sid.cat.entities.Client;
+import MyCatalogue.sid.cat.services.ClientService;
 
 
 @RestController
 @Transactional
 public class ClientController {
 	
-	@Autowired
-	private IClientRepository clientRepository;
+	@Resource
+	private ClientService clientService;
 	
 	@RequestMapping("/saveClient")
 	public Client saveClient(Client c){
-		return clientRepository.save(c);// .save(c);
+		return this.clientService.saveClient(c);
 	}
 	
 	@RequestMapping("/allClient")
-	public List<Client> saveClient(){
-		return clientRepository.findAll();// .save(c);
+	public List<Client> allClient(){
+		return this.clientService.allClient();
 	}
 	
 	@RequestMapping("/updateClient")
-	public Client getProduit(Client c){
-		return clientRepository.saveAndFlush(c);
+	public Client updateClient(Client c){
+		return this.clientService.updateClient(c);
 	}
 	
-	@RequestMapping("/RechercherClient")
-	Client RechercherClient( @RequestParam("id") Long Id){
-		return clientRepository.findOne(Id);
+	@RequestMapping("/rechercherClient")
+	public Client rechercherClient( @RequestParam("id") Long Id){
+		return this.clientService.rechercherClient(Id);
+	}
+	
+	@RequestMapping("/rechercherPrenomClient")
+	public Client rechercherParPrenomClient( @RequestParam("prenom") String prenom){
+		return this.clientService.rechercheClientParPrenom(prenom);
 	}
 
 }

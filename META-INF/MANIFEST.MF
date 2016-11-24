@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Cat
+Bundle-SymbolicName: sid.cat
+Bundle-Version: 1.0.0.qualifier
+Export-Package: MyCatalogue.sid.cat,
+ MyCatalogue.sid.cat.Test,
+ MyCatalogue.sid.cat.controllers,
+ MyCatalogue.sid.cat.dao,
+ MyCatalogue.sid.cat.entities

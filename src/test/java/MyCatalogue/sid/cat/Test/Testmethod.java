@@ -20,7 +20,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import MyCatalogue.sid.cat.App;
 //import MyCatalogue.sid.cat.App;
 import MyCatalogue.sid.cat.controllers.ClientController;
 import MyCatalogue.sid.cat.dao.IClientRepository;
@@ -28,6 +27,7 @@ import MyCatalogue.sid.cat.dao.IProduitRepository;
 import MyCatalogue.sid.cat.entities.Client;
 import MyCatalogue.sid.cat.entities.Produit;
 import junit.framework.TestCase;
+import myCatalogue.sid.cat.App;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(loader=SpringApplicationContextLoader.class)
